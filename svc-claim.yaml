@@ -1,0 +1,26 @@
+apiVersion: servicebox.apps.rh.com/v1alpha1
+kind: ServiceClaim
+metadata:
+  name: backing-svc-claim
+  namespace: development
+spec:
+  ref:
+    apiVersion: backingsvc.com/v1alpha1
+    kind: BackingService
+    name: my-svc #optional
+    labels: #optional
+      foo: bar
+    namespace: my-namespace # optional (if claiming across namespaces)
+status:
+  binding:
+    name: service-secret # copied from BackingService/my-svc
+  history:
+    - lastTransitionTime: "2019-10-22T16:29:25Z"
+      status: "True"
+      type: Ready
+    - lastTransitionTime: "2019-10-22T16:29:24Z"
+      status: "True"
+      type: ResourceClaimed
+    - lastTransitionTime: "2019-10-22T16:29:23Z"
+      status: "True"
+      type: ResourceMatched
